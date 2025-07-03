@@ -20,12 +20,12 @@ class Prova extends Atividade {
     // sobrescrita de método 
     public function inserir():Bool {
         $sql = "INSERT INTO atividade (descricao, peso, anexo, tipo, recuperacao, idDisciplina)
-                VALUES (:descricao, :peso, :anexo, :tipo, :rec, :idDisciplina);";
+                VALUES (:descricao, :peso, :anexo, :tipo, :recuperacao, :idDisciplina);";
         $parametros = array(':descricao'=>$this->getDescricao(),
                             ':peso'=>$this->getPeso(),
                             ':anexo'=>$this->getAnexo(),
                             ':tipo' => $this->getTipo(),
-                            ':rec' => $this->getRecuperacao(),
+                            ':recuperacao' => $this->getRecuperacao(),
                             ':idDisciplina' => $this->getIdDisciplina());
         return Database::executar($sql, $parametros) == true;
     }

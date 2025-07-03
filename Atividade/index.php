@@ -69,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $formulario = str_replace('{disciplina}', $disciplinas, $formulario);
 
     }
-    print($formulario); 
-    include_once('lista_atividade.php');
+    print($formulario);
 }
 ?>
