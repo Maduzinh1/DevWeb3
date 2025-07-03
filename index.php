@@ -1,5 +1,6 @@
 <?php
-session_start();
+    session_start();
+    require_once ('valida_login.php');
 ?>
 
 <!DOCTYPE html>
