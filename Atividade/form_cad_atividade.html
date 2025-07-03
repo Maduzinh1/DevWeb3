@@ -11,28 +11,44 @@
     <form action="index.php" method="post" enctype="multipart/form-data">
         <fieldset>
             <legend>Formulário</legend>
+
             <label for="idDisciplina">Disciplina:</label>
             {disciplina}
-            <label for="id">Id:</label>
-            <input type="text" name="id" readonly value={id}>
+            <br><br>
+            
+            <label for="id" hidden>Id:</label>
+            <input type="text" name="id" readonly value={id} hidden>
+
             <label for="descricao">Descricao:</label>
             <input type="text" name="descricao" value={descricao}>
+            <br><br>
+
             <label for="peso">Peso:</label>
             <input type="text" name="peso" value={peso}>
+            <br><br>
+
             <label for="anexo">Anexo:</label>
             <input type="file" name="anexo" value={anexo}>
+            <br><br>
+
             <label for="tipo">Tipo:</label>
             <input type="radio" name="tipo" value="1"> Prova
             <input type="radio" name="tipo" value="2"> Trabalho
+            <br><br>
+
             <label for="recuperacao">Recuperação:</label>
             <input type="text" name="recuperacao" value="{recuperacao}"> 
+            <br><br>
+
             <label for="equipe">Equipe:</label>
             <input type="text" name="equipe" value="{equipe}"> 
+            <br><br>
 
             <button type="submit" name="acao" value="salvar">Salvar</button>
             <button type="submit" name="acao" value="excluir">Excluir</button>
             <input type="reset" value="Cancelar">
         </fieldset>
     </form>
+<script src="filtro.js"></script>
 </body>
 </html>
