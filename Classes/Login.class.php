@@ -1,5 +1,6 @@
 <?php
-require_once ("Usuario.class.php");
+require_once ("Professor.class.php");
+require_once ("Aluno.class.php");
 require_once ("Database.class.php");
 
 class Login {
@@ -12,13 +13,22 @@ class Login {
             try {
                 $resultado = Database::executar($sql, $parametros);
                 $dados = $resultado->fetch();
-                if ($dados) {
-                    return new Usuario($dados['id'],
-                                       $dados['nome'],
-                                       $dados['email'],
-                                       $dados['senha'],
-                                       $dados['matricula'],
-                                       $dados['contato']);
+                if ($dados['salario']) {
+                    return new Professor($dados['id'],
+                                         $dados['nome'],
+                                         $dados['email'],
+                                         $dados['senha'],
+                                         $dados['matricula'],
+                                         $dados['contato'],
+                                         $dados['salario']);
+                } elseif ($dados['nomeResponsavel']) {
+                    return new Aluno($dados['id'],
+                                     $dados['nome'],
+                                     $dados['email'],
+                                     $dados['senha'],
+                                     $dados['matricula'],
+                                     $dados['contato'],
+                                     $dados['nomeResponsavel']);
                 } else {
                     return false;
                 }
