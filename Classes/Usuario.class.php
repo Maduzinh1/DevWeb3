@@ -2,7 +2,7 @@
 require_once ("Login.class.php");
 require_once ("Database.class.php");
 
-class Usuario {
+abstract class Usuario implements Formulario {
     private $id;
     private $nome;
     private $email; // login
@@ -22,7 +22,7 @@ class Usuario {
       //  $this->login->setIdSession(1);
     }
 
-    public function getId() {
+    public function getId():int {
         return $this->id;
     }
     
@@ -34,7 +34,7 @@ class Usuario {
         }
     }
 
-    public function getNome() {
+    public function getNome():String {
         return $this->nome;
     }
 
@@ -100,16 +100,7 @@ class Usuario {
         return $str;
     }
 
-    public function inserir():Bool {
-        $sql = "INSERT INTO Usuario (nome, email, senha, matricula, contato)
-                VALUES (:nome, :email, :senha, :matricula, :contato);";
-        $parametros = array(':nome'=>$this->getNome(),
-                            ':email'=>$this->getEmail(),
-                            ':senha'=>$this->getSenha(),
-                            ':matricula'=>$this->getMatricula(),
-                            ':contato'=>$this->getContato());
-        return Database::executar($sql, $parametros) == true;
-    }
+    abstract public function inserir():Bool;
 
     public static function listar($tipo=0, $info=''):Array {
         $sql = "SELECT * FROM usuario";
@@ -132,22 +123,7 @@ class Usuario {
         return $usuarios;
     }
 
-    public function alterar():Bool {       
-        $sql = "UPDATE usuario
-                SET nome = :nome, 
-                    email = :email,
-                    senha = :senha,
-                    matricula = :matricula,
-                    contato = :contato
-                WHERE id = :id;";
-        $parametros = array(':id'=>$this->getId(),
-                            ':nome'=>$this->getNome(),
-                            ':email'=>$this->getEmail(),
-                            ':senha'=>$this->getSenha(),
-                            ':matricula'=>$this->getMatricula(),
-                            ':contato'=>$this->getContato());
-        return Database::executar($sql, $parametros) == true;
-    }
+    abstract public function alterar():Bool;
 
     public function excluir():Bool {
         $sql = "DELETE FROM usuario

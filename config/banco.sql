@@ -20,7 +20,12 @@ USE `siga` ;
 CREATE TABLE IF NOT EXISTS `siga`.`disciplina` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(255) NULL,
-  PRIMARY KEY (`id`))
+  `idProfessor` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`idProfessor`)
+  REFERENCES `siga`.`usuario` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -54,6 +59,8 @@ CREATE TABLE IF NOT EXISTS `siga`.`usuario` (
   `senha` VARCHAR(255) NULL,
   `matricula` INT(11) NULL,
   `contato` VARCHAR(255) NULL,
+  `salario` DECIMAL(16,2) NULL,
+  `nomeResponsavel` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 

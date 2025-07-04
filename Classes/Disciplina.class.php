@@ -6,10 +6,12 @@ class Disciplina implements Formulario {
     private $id;
     private $nome;
     private $atividades;
+    private $idProfessor;
 
-    public function __construct($id, $nome) {
+    public function __construct($id, $nome, $idProfessor) {
         $this->setId($id);
         $this->setNome($nome);
+        $this->setIdProfessor($idProfessor);
         $this->atividades = array();
     }
 
@@ -33,10 +35,19 @@ class Disciplina implements Formulario {
         array_push($this->atividades, $atividade);
     }    
 
+    public function getIdProfessor() {
+        return $this->idProfessor;
+    }
+
+    public function setIdProfessor($idProfessor) {
+        $this->idProfessor = $idProfessor;
+    }
+
     public function inserir():Bool {
-        $sql = "INSERT INTO disciplina (nome)
-                VALUES (:nome);";
-        $parametros = array(':nome' => $this->getNome());
+        $sql = "INSERT INTO disciplina (nome, idProfessor)
+                VALUES (:nome, :idProfessor);";
+        $parametros = array(':nome' => $this->getNome(),
+                            ':idProfessor' => $this->getIdProfessor()); 
         return Database::executar($sql, $parametros) == true;
     }
 
@@ -54,7 +65,7 @@ class Disciplina implements Formulario {
         $comando = Database::executar($sql, $parametros);
         $disciplinas = [];
         while ($registro = $comando->fetch()) {
-            $disciplina = new Disciplina($registro['id'], $registro['nome']);
+            $disciplina = new Disciplina($registro['id'], $registro['nome'], $registro['idProfessor']);
             array_push($disciplinas, $disciplina);
         }
         return $disciplinas;
@@ -62,10 +73,12 @@ class Disciplina implements Formulario {
 
     public function alterar():Bool {
         $sql = "UPDATE disciplina
-                SET nome = :nome                     
+                SET nome = :nome,
+                    idProfessor = :idProfessor                   
                 WHERE id = :id;";
         $parametros = array(':id' => $this->getId(),
-                            ':nome' => $this->getNome());
+                            ':nome' => $this->getNome(),
+                            ':idProfessor' => $this->getIdProfessor());
         return Database::executar($sql, $parametros) == true;
     }
 
