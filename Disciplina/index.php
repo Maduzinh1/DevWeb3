@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once('../valida_login.php');
-require_once("../Classes/Disciplina.class.php");
-require_once("../Classes/Professor.class.php");
+require_once ('../valida_login.php');
+require_once ("../Classes/Disciplina.class.php");
+require_once ("../Classes/Professor.class.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = isset($_POST['id'])?$_POST['id']:0;

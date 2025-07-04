@@ -1,7 +1,10 @@
 <?php
 session_start();
-require_once('../valida_login.php');
-require_once("../Classes/Usuario.class.php");
+require_once ('../valida_login.php');
+require_once ("../Classes/Usuario.class.php");
+require_once ("../Classes/Professor.class.php");
+require_once ("../Classes/Aluno.class.php");
+require_once ("../Classes/Form.class.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $id = isset($_POST['id'])?$_POST['id']:0;
@@ -10,9 +13,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $senha = isset($_POST['senha'])?$_POST['senha']:0;
     $matricula = isset($_POST['matricula'])?$_POST['matricula']:0;
     $contato = isset($_POST['contato'])?$_POST['contato']:0;
+    $tipo = isset($_POST['tipo'])?$_POST['tipo']:0;
+    $salario = isset($_POST['salario'])?$_POST['salario']:0;
+    $nomeResponsavel = isset($_POST['nomeResponsavel'])?$_POST['nomeResponsavel']:"";
     $acao = isset($_POST['acao'])?$_POST['acao']:"";
 
-    $usuario = new Usuario($id, $nome, $email, $senha, $matricula, $contato);
+    if ($tipo == 1) {
+        $usuario = new Professor($id, $nome, $email, $senha, $matricula, $contato, $salario);
+    } else {
+        $usuario = new Aluno($id, $nome, $email, $senha, $matricula, $contato, $nomeResponsavel);
+    }
 
     if ($acao == 'salvar') {
         if ($id > 0) {
@@ -42,6 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $formulario = str_replace('{senha}', $usuario->getSenha(), $formulario);
         $formulario = str_replace('{matricula}', $usuario->getMatricula(), $formulario);
         $formulario = str_replace('{contato}', $usuario->getContato(), $formulario);
+        $formulario = str_replace('{tipo}', "", $formulario);
+        $formulario = str_replace('{salario}', (get_class($usuario) == "Professor") ? $usuario->getSalario() : "", $formulario);
+        $formulario = str_replace('{nomeResponsavel}', (get_class($usuario) == "Aluno") ? $usuario->getNomeResponsavel() : "", $formulario);
     } else {
         $formulario = str_replace('{id}', 0, $formulario);
         $formulario = str_replace('{nome}', '', $formulario);
@@ -49,6 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $formulario = str_replace('{senha}', '', $formulario);
         $formulario = str_replace('{matricula}', '', $formulario);
         $formulario = str_replace('{contato}', '', $formulario);
+        $formulario = str_replace('{tipo}', "", $formulario);
+        $formulario = str_replace('{salario}', "", $formulario);
+        $formulario = str_replace('{nomeResponsavel}', "", $formulario);
     }
     print($formulario);
 }

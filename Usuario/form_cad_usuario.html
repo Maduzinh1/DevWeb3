@@ -33,6 +33,19 @@
             <label for="contato">Contato:</label>
             <input type="phone" placeholder="DDD XXXXX-XXXX" name="contato" value={contato}>
             <br><br>
+
+            <label for="tipo">Tipo:</label>
+            <input type="radio" name="tipo" value="1"> Professor
+            <input type="radio" name="tipo" value="2"> Aluno
+            <br><br>
+
+            <label for="salario">Salário:</label>
+            <input type="text" name="salario" value={salario}>
+            <br><br>
+
+            <label for="nomeResponsavel">Nome do Responsável:</label>
+            <input type="text" name="nomeResponsavel" value={nomeResponsavel}>
+            <br><br>
             
             <button type="submit" name="acao" value="salvar">Salvar</button>
             <button type="submit" name="acao" value="excluir">Excluir</button>

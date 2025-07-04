@@ -11,6 +11,7 @@ abstract class Usuario implements Formulario {
     private $matricula;
     private $contato;
     private $login; // objeto login
+    private $tipo;
 
     // construtor da classe
     public function __construct($id, $nome, $email, $senha, $matricula, $contato) {
@@ -21,6 +22,7 @@ abstract class Usuario implements Formulario {
         $this->setMatricula($matricula);
         $this->setContato($contato);
       //  $this->login->setIdSession(1);
+        $this->tipo = get_class($this); // pega de acordo com o tipo de objeto
     }
 
     public function getId():int {
@@ -96,6 +98,18 @@ abstract class Usuario implements Formulario {
         }
     }
 
+    public function getTipo():String {
+        return isset($this->tipo)?$this->tipo:"";
+    }
+
+    public function setTipo($tipo) {
+        if ($tipo < 0) {
+            throw new Exception("Erro, o tipo deve ser maior que 0!");
+        } else {
+            $this->tipo = $tipo;
+        }
+    }
+
     public function __toString():String {  
         $str = "Usuário: ".$this->getId()." - ".$this->getNome()." - ".$this->getEmail();        
         return $str;
@@ -118,7 +132,11 @@ abstract class Usuario implements Formulario {
         $comando = Database::executar($sql, $parametros);
         $usuarios = [];
         while ($registro = $comando->fetch()) {
-            $usuario = new Usuario($registro['id'], $registro['nome'], $registro['email'], $registro['senha'], $registro['matricula'], $registro['contato']);
+            if ($registro['tipo'] == 'Professor') {
+                $usuario = new Professor($registro['id'], $registro['nome'], $registro['email'], $registro['senha'], $registro['matricula'], $registro['contato'], $registro['salario']);
+            } else {
+                $usuario = new Aluno($registro['id'], $registro['nome'], $registro['email'], $registro['senha'], $registro['matricula'], $registro['contato'], $registro['nomeResponsavel']);
+            }
             array_push($usuarios, $usuario);
         }
         return $usuarios;

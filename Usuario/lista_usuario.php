@@ -1,7 +1,10 @@
 <?php
 session_start();
-require_once('../valida_login.php');
-require_once("../Classes/Usuario.class.php");
+require_once ('../valida_login.php');
+require_once ("../Classes/Usuario.class.php");
+require_once ("../Classes/Professor.class.php");
+require_once ("../Classes/Aluno.class.php");
+require_once ("../Classes/Form.class.php");
     
 $busca = isset($_GET['busca'])?$_GET['busca']:0;
 $tipo = isset($_GET['tipo'])?$_GET['tipo']:0;
@@ -16,6 +19,9 @@ foreach($lista as $usuario) {
     $item = str_replace('{senha}', $usuario->getSenha(), $item);
     $item = str_replace('{matricula}', $usuario->getMatricula(), $item);
     $item = str_replace('{contato}', $usuario->getContato(), $item);
+    $item = str_replace('{tipo}', get_class($usuario), $item);
+    $item = str_replace('{salario}', (get_class($usuario) == "Professor") ? $usuario->getSalario() : "", $item);
+    $item = str_replace('{nomeResponsavel}', (get_class($usuario) == "Aluno") ? $usuario->getNomeResponsavel() : "", $item);
     $itens .= $item;
 }
 $listagem = file_get_contents('listagem_usuario.html');
