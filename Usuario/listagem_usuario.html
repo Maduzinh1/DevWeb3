@@ -1,19 +1,23 @@
-  <!-- Filtro -->
-  <form action="lista_usuario.php" method="GET">
+<!-- Filtro -->
+<form action="lista_usuario.php" method="GET">
     <fieldset>
         <legend>Busca</legend>
-        <label for="busca">Busca</label>
-        <input type="text" name="busca">
+        
         <label for="tipo">Tipo</label>
-        <select name="tipo">
-            <option value="0">Selecione</option>
+        <select name="tipo" id="tipo" onchange="mostrarOuOcultarBusca()">
+            <option value="0">Sem Filtro</option>
             <option value="1">ID</option>
             <option value="2">Nome</option>
             <option value="3">Matricula</option>
         </select>
+
+        <label for="busca" id="busca-label">Busca</label>
+        <input type="text" name="busca" id="busca">
+
         <button type="submit">Buscar</button>
     </fieldset>
 </form>
+
 <!-- Listagem -->
 <h1>Listagem de Usuarios</h1>
 <table border="1">
@@ -25,3 +29,5 @@
     <th>Contato</th>
     {itens}
 </table>
+
+<script src="filtro.js"></script>

@@ -1,7 +1,5 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
 require_once ('../valida_login.php');
 require_once ("../Classes/Atividade.class.php");
 require_once ("../Classes/Trabalho.class.php");

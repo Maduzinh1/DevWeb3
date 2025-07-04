@@ -116,8 +116,8 @@ class Usuario {
         switch ($tipo){
             case 0: break;
             case 1: $sql .= " WHERE id = :info ORDER BY id;"; break; // filtro por ID
-            case 2: $sql .= " WHERE matricula = :info ORDER BY id;"; break; // filtro por matricula
-            case 3: $sql .= " WHERE nome like :info ORDER BY nome;"; $info = '%'.$info.'%'; break; // filtro por nome
+            case 2: $sql .= " WHERE nome like :info ORDER BY nome;"; $info = '%'.$info.'%'; break; // filtro por nome
+            case 3: $sql .= " WHERE matricula = :info ORDER BY id;"; break; // filtro por matricula
         }
         $parametros = array();
         if ($tipo > 0) {
