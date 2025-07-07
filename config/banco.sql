@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `siga`.`usuario` (
   `senha` VARCHAR(255) NULL,
   `matricula` INT(11) NULL,
   `contato` VARCHAR(255) NULL,
+  `tipo` VARCHAR(255) NULL,
   `salario` DECIMAL(16,2) NULL,
   `nomeResponsavel` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
