@@ -15,42 +15,43 @@
             <input type="text" name="id" readonly value={id} hidden>
 
             <label for="nome">Nome:</label>
-            <input type="text" name="nome" value={nome}>
+            <input type="text" name="nome" value="{nome}" required>
             <br><br>
             
             <label for="email">E-mail:</label>
-            <input type="email" name="email" value={email}>
+            <input type="email" name="email" value="{email}" required>
             <br><br>
             
             <label for="senha">Senha:</label>
-            <input type="password" name="senha" value={senha}>
+            <input type="password" name="senha" value="{senha}" required>
             <br><br>
             
             <label for="matricula">Matricula:</label>
-            <input type="text" name="matricula" value={matricula}>
+            <input type="text" name="matricula" value="{matricula}" required>
             <br><br>
             
             <label for="contato">Contato:</label>
-            <input type="phone" placeholder="DDD XXXXX-XXXX" name="contato" value={contato}>
+            <input type="phone" placeholder="DDD XXXXX-XXXX" name="contato" value="{contato}" required>
             <br><br>
 
             <label for="tipo">Tipo:</label>
-            <input type="radio" name="tipo" value="1"> Professor
-            <input type="radio" name="tipo" value="2"> Aluno
+            <input type="radio" name="tipo" value="1" onchange="mostrarOuOcultarTipos()"> Professor
+            <input type="radio" name="tipo" value="2" onchange="mostrarOuOcultarTipos()"> Aluno
             <br><br>
 
-            <label for="salario">Salário:</label>
-            <input type="text" name="salario" value={salario}>
-            <br><br>
+            <label for="salario" id="salario-label">Salário:</label>
+            <input type="text" name="salario" value="{salario}" id="salario">
 
-            <label for="nomeResponsavel">Nome do Responsável:</label>
-            <input type="text" name="nomeResponsavel" value={nomeResponsavel}>
-            <br><br>
-            
+            <label for="nomeResponsavel" id="nomeResponsavel-label">Nome do Responsável:</label>
+            <input type="text" name="nomeResponsavel" value="{nomeResponsavel}" id="nomeResponsavel">
+            <br id="quebra-linha1"><br id="quebra-linha2">
+
             <button type="submit" name="acao" value="salvar">Salvar</button>
             <button type="submit" name="acao" value="excluir">Excluir</button>
             <input type="reset" value="Cancelar">
         </fieldset>
     </form>
+
+    <script src="form_usuario.js"></script>
 </body>
 </html>
