@@ -123,6 +123,7 @@ abstract class Usuario implements Formulario {
             case 1: $sql .= " WHERE id = :info ORDER BY id;"; break; // filtro por ID
             case 2: $sql .= " WHERE nome like :info ORDER BY nome;"; $info = '%'.$info.'%'; break; // filtro por nome
             case 3: $sql .= " WHERE matricula = :info ORDER BY id;"; break; // filtro por matricula
+            case 4: $sql .= " WHERE tipo = :info ORDER BY id;"; break; // filtro por tipo
         }
         $parametros = array();
         if ($tipo > 0) {

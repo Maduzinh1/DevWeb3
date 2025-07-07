@@ -1,8 +1,10 @@
 <?php
 session_start();
 require_once ('../valida_login.php');
+require_once ("../Classes/Form.class.php");
 require_once ("../Classes/Disciplina.class.php");
 require_once ("../Classes/Professor.class.php");
+require_once ("../Classes/Aluno.class.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = isset($_POST['id'])?$_POST['id']:0;
@@ -33,12 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $resultado = Disciplina::listar(1, $id);
     if ($resultado) {
         $usuario = $resultado[0];
-        $professores = Form::montaSelect(Professor::listar(), 'idProfessor', "", $disciplina->getIdProfessor());
+        $professores = Form::montaSelect(Professor::listar(4, "Professor"), 'idProfessor', "", 0);
         $formulario = str_replace('{id}', $usuario->getId(), $formulario);
         $formulario = str_replace('{nome}', $usuario->getNome(), $formulario);
         $formulario = str_replace('{professor}', $professores, $formulario);
     } else {
-        $professores = Form::montaSelect(Professor::listar(), 'idProfessor', "", $disciplina->getIdProfessor());
+        $professores = Form::montaSelect(Professor::listar(4, "Professor"), 'idProfessor', "", 0);
         $formulario = str_replace('{id}', 0, $formulario);
         $formulario = str_replace('{nome}', '', $formulario);
         $formulario = str_replace('{professor}', $professores, $formulario);
