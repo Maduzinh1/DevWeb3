@@ -19,34 +19,35 @@
             <input type="text" name="id" readonly value={id} hidden>
 
             <label for="descricao">Descricao:</label>
-            <input type="text" name="descricao" value={descricao}>
+            <input type="text" name="descricao" value={descricao} required>
             <br><br>
 
             <label for="peso">Peso:</label>
-            <input type="text" name="peso" value={peso}>
+            <input type="text" name="peso" value={peso} required>
             <br><br>
 
             <label for="anexo">Anexo:</label>
-            <input type="file" name="anexo" value={anexo}>
+            <input type="file" name="anexo" value={anexo} required>
             <br><br>
 
             <label for="tipo">Tipo:</label>
-            <input type="radio" name="tipo" value="1"> Prova
-            <input type="radio" name="tipo" value="2"> Trabalho
+            <input type="radio" name="tipo" value="1" onchange="mostrarOuOcultarTipos()"> Prova
+            <input type="radio" name="tipo" value="2" onchange="mostrarOuOcultarTipos()"> Trabalho
             <br><br>
 
-            <label for="recuperacao">Recuperação:</label>
-            <input type="text" name="recuperacao" value="{recuperacao}"> 
-            <br><br>
+            <label for="recuperacao" id="recuperacao-label">Recuperação:</label>
+            <input type="text" name="recuperacao" value="{recuperacao}" id="recuperacao">
 
-            <label for="equipe">Equipe:</label>
-            <input type="text" name="equipe" value="{equipe}"> 
-            <br><br>
+            <label for="equipe" id="equipe-label">Equipe:</label>
+            <input type="text" name="equipe" value="{equipe}" id="equipe">
+            <br id="quebra-linha1"><br id="quebra-linha2">
 
             <button type="submit" name="acao" value="salvar">Salvar</button>
             <button type="submit" name="acao" value="excluir">Excluir</button>
             <input type="reset" value="Cancelar">
         </fieldset>
     </form>
+
+    <script src="form_atividade.js"></script>
 </body>
 </html>

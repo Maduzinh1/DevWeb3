@@ -20,9 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     move_uploaded_file($_FILES['anexo']['tmp_name'],PATH_UPLOAD.$destino_anexo);
 
     if ($tipo == 1) {
-        $atividade = new Prova($id,$descricao,$peso,$destino_anexo, $recuperacao, $idDisciplina);
+        $atividade = new Prova($id, $descricao, $peso, $destino_anexo, $recuperacao, $idDisciplina);
     } else {
-        $atividade = new Trabalho($id,$descricao,$peso,$destino_anexo, $equipe, $idDisciplina);
+        $atividade = new Trabalho($id, $descricao, $peso, $destino_anexo, $equipe, $idDisciplina);
     }
 
     if ($acao == 'salvar') {
