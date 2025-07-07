@@ -1,5 +1,4 @@
 <?php
-require_once ("Login.class.php");
 require_once ("Database.class.php");
 require_once ("Formulario.interface.php");
 

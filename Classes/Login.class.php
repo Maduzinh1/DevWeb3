@@ -1,5 +1,4 @@
 <?php
-require_once ("Usuario.class.php");
 require_once ("Database.class.php");
 require_once ("Professor.class.php");
 require_once ("Aluno.class.php");
