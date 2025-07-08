@@ -3,6 +3,11 @@
     <fieldset>
         <legend>Busca</legend>
         
+        <label for="qual_usuario">Qual usuário você quer buscar: </label>
+        <input type="radio" name="qual_usuario" value="1"> Professor
+        <input type="radio" name="qual_usuario" value="2"> Aluno
+        <br><br>
+        
         <label for="tipo">Tipo</label>
         <select name="tipo" id="tipo" onchange="mostrarOuOcultarBusca()">
             <option value="0">Sem Filtro</option>
@@ -19,7 +24,7 @@
 </form>
 
 <!-- Listagem -->
-<h1>Listagem de Usuarios</h1>
+<h1>Listagem de Professores</h1>
 <table border="1">
     <th>Id</th>
     <th>Nome</th>
@@ -29,8 +34,21 @@
     <th>Contato</th>
     <th>Tipo</th>
     <th>Salário</th>
+    {itens_professores}
+</table>
+
+<!-- Listagem -->
+<h1>Listagem de Alunos</h1>
+<table border="1">
+    <th>Id</th>
+    <th>Nome</th>
+    <th>E-mail</th>
+    <th>Senha</th>
+    <th>Matrícula</th>
+    <th>Contato</th>
+    <th>Tipo</th>
     <th>Nome do Responsável</th>
-    {itens}
+    {itens_alunos}
 </table>
 
 <script src="lista_usuario.js"></script>

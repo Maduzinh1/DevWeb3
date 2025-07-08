@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
     if ($resultado) {
-        header("Location: index.php");
+        header("Location: lista_usuario.php");
     } else {
         echo "Erro ao salvar dados: ". $usuario;
     }
